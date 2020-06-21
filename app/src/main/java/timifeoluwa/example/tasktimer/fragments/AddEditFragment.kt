@@ -1,4 +1,4 @@
-package timifeoluwa.example.tasktimer
+package timifeoluwa.example.tasktimer.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -9,8 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import kotlinx.android.synthetic.main.fragment_add_edit.*
+import timifeoluwa.example.tasktimer.R
+import timifeoluwa.example.tasktimer.database.Task
 
 private const val TAG = "AddEditFragment"
 
@@ -81,7 +82,11 @@ class AddEditFragment : Fragment() {
         }
 
         val newTask =
-            Task(addedit_name.text.toString(), addedit_description.text.toString(), sortOrder)
+            Task(
+                addedit_name.text.toString(),
+                addedit_description.text.toString(),
+                sortOrder
+            )
         newTask.id = task?.id ?: 0
         return newTask
 

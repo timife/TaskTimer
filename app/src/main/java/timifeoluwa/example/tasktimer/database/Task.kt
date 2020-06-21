@@ -1,4 +1,4 @@
-package timifeoluwa.example.tasktimer
+package timifeoluwa.example.tasktimer.database
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

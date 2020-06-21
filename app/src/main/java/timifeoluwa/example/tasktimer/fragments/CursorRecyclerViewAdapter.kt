@@ -1,4 +1,4 @@
-package timifeoluwa.example.tasktimer
+package timifeoluwa.example.tasktimer.fragments
 
 import android.database.Cursor
 import android.util.Log
@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import timifeoluwa.example.tasktimer.R
+import timifeoluwa.example.tasktimer.TasksContract
+import timifeoluwa.example.tasktimer.database.Task
 import java.lang.IllegalStateException
 
 

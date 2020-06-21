@@ -1,6 +1,9 @@
 package timifeoluwa.example.tasktimer
 
+import android.content.ContentUris
+import android.net.Uri
 import android.os.Bundle
+import android.provider.BaseColumns
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +12,8 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import kotlinx.android.synthetic.main.settings_dialog.*
+import timifeoluwa.example.tasktimer.database.CONTENT_AUTHORITY
+import timifeoluwa.example.tasktimer.database.CONTENT_AUTHORITY_URI
 import java.util.*
 
 private const val TAG = "SettingsDialog"
@@ -190,5 +195,37 @@ class SettingsDialog : AppCompatDialogFragment() {
         Log.d(TAG,"onDestroy: called")
         super.onDestroy()
 
+    }
+}
+
+object TasksContract {                //a singleton.
+
+    internal const val TABLE_NAME = "Tasks"
+
+    /**
+     * The URI to access the task table.
+     */
+    val CONTENT_URI: Uri = Uri.withAppendedPath(
+        CONTENT_AUTHORITY_URI,
+        TABLE_NAME
+    )
+
+    const val CONTENT_TYPE = "vnd.android.cursor.dir/vnd.$CONTENT_AUTHORITY.$TABLE_NAME"
+    const val CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.$CONTENT_AUTHORITY.$TABLE_NAME"
+
+    //Tasks fields
+    object Columns {
+        const val ID = BaseColumns._ID
+        const val TASK_NAME = "Name"
+        const val TASK_DESCRIPTION = "Description"
+        const val TASK_SORT_ORDER = "SortOrder"
+    }
+
+    fun getId(uri: Uri): Long {
+        return ContentUris.parseId(uri)
+    }
+
+    fun buildUriFromId(id: Long): Uri {  //complementary method.
+        return ContentUris.withAppendedId(CONTENT_URI, id)
     }
 }

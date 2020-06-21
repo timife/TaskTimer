@@ -1,9 +1,11 @@
-package timifeoluwa.example.tasktimer
+package timifeoluwa.example.tasktimer.database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import timifeoluwa.example.tasktimer.SingletonHolder
+import timifeoluwa.example.tasktimer.TasksContract
 import java.lang.IllegalStateException
 
 /**
@@ -17,7 +19,10 @@ private const val TAG = "AppDatabase"
 private const val DATABASE_NAME = "TaskTimer.db"
 private const val DATABASE_VERSION = 3
 
-internal class AppDatabase private constructor(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+internal class AppDatabase private constructor(context: Context): SQLiteOpenHelper(context,
+    DATABASE_NAME, null,
+    DATABASE_VERSION
+) {
 
     init {
         Log.d(TAG, "AppDatabase: initialising")

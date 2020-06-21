@@ -31,7 +31,7 @@
         </activity>
 
         <provider
-            android:name=".AppProvider"
+            android:name=".database.AppProvider"
             android:authorities="timifeoluwa.example.tasktimer.provider"
             android:exported="false" />
     </application>

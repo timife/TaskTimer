@@ -20,6 +20,10 @@ import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import timifeoluwa.example.tasktimer.database.Task
+import timifeoluwa.example.tasktimer.fragments.AddEditFragment
+import timifeoluwa.example.tasktimer.fragments.MainActivityFragment
+import timifeoluwa.example.tasktimer.fragments.TaskTimerViewModel
 
 
 private const val TAG = "MainActivity"

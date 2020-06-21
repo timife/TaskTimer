@@ -1,4 +1,4 @@
-package timifeoluwa.example.tasktimer
+package timifeoluwa.example.tasktimer.database
 
 import android.content.ContentProvider
 import android.content.ContentValues
@@ -8,6 +8,7 @@ import android.database.SQLException
 import android.database.sqlite.SQLiteQueryBuilder
 import android.net.Uri
 import android.util.Log
+import timifeoluwa.example.tasktimer.TasksContract
 
 /**
  * Provider for the TaskTimer app. This is the oly class that knows about [AppDatabase].
@@ -38,15 +39,33 @@ class AppProvider : ContentProvider() {
         val matcher = UriMatcher(UriMatcher.NO_MATCH)
 
         //e.g. content://timifeoluwa.example.tasktimer.provider/Tasks
-        matcher.addURI(CONTENT_AUTHORITY, TasksContract.TABLE_NAME, TASKS)
+        matcher.addURI(
+            CONTENT_AUTHORITY,
+            TasksContract.TABLE_NAME,
+            TASKS
+        )
 
         //e.g. content://timifeoluwa.example.tasktimer.provider/Tasks/8
-        matcher.addURI(CONTENT_AUTHORITY, "${TasksContract.TABLE_NAME}/#", TASKS_ID)
+        matcher.addURI(
+            CONTENT_AUTHORITY, "${TasksContract.TABLE_NAME}/#",
+            TASKS_ID
+        )
 
-        matcher.addURI(CONTENT_AUTHORITY, TimingsContract.TABLE_NAME, TIMINGS)
-        matcher.addURI(CONTENT_AUTHORITY, "${TimingsContract.TABLE_NAME}/#", TIMINGS_ID)
+        matcher.addURI(
+            CONTENT_AUTHORITY,
+            TimingsContract.TABLE_NAME,
+            TIMINGS
+        )
+        matcher.addURI(
+            CONTENT_AUTHORITY, "${TimingsContract.TABLE_NAME}/#",
+            TIMINGS_ID
+        )
 
-        matcher.addURI(CONTENT_AUTHORITY, CurrentTimingContract.TABLE_NAME, CURRENT_TIMING)
+        matcher.addURI(
+            CONTENT_AUTHORITY,
+            CurrentTimingContract.TABLE_NAME,
+            CURRENT_TIMING
+        )
 
 //        matcher.addURI(CONTENT_AUTHORITY, DurationsContract.TABLE_NAME, TASK_DURATIONS)
 //        matcher.addURI(CONTENT_AUTHORITY, "${DurationsContract.TABLE_NAME}/#", TASK_DURATIONS_ID)
@@ -96,7 +115,8 @@ class AppProvider : ContentProvider() {
         val queryBuilder = SQLiteQueryBuilder()
 
         when (match) {
-            TASKS -> queryBuilder.tables = TasksContract.TABLE_NAME
+            TASKS -> queryBuilder.tables =
+                TasksContract.TABLE_NAME
 
             TASKS_ID -> {
                 queryBuilder.tables = TasksContract.TABLE_NAME
@@ -106,7 +126,8 @@ class AppProvider : ContentProvider() {
                 queryBuilder.appendWhereEscapeString("$taskId")  // <-- change method
             }
 
-            TIMINGS -> queryBuilder.tables = TimingsContract.TABLE_NAME
+            TIMINGS -> queryBuilder.tables =
+                TimingsContract.TABLE_NAME
 
             TIMINGS_ID -> {
                 queryBuilder.tables = TimingsContract.TABLE_NAME
@@ -161,7 +182,8 @@ class AppProvider : ContentProvider() {
                 val db = AppDatabase.getInstance(context!!).writableDatabase
                 recordId = db.insert(TimingsContract.TABLE_NAME, null, values)
                 if (recordId != -1L) {
-                    returnUri = TimingsContract.buildUriFromId(recordId)
+                    returnUri =
+                        TimingsContract.buildUriFromId(recordId)
                 } else {
                     throw SQLException()
                 }

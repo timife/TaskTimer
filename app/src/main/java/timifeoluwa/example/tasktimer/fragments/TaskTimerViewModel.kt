@@ -1,4 +1,4 @@
-package timifeoluwa.example.tasktimer
+package timifeoluwa.example.tasktimer.fragments
 
 import android.app.Application
 import android.content.ContentValues
@@ -12,6 +12,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import timifeoluwa.example.tasktimer.database.Task
+import timifeoluwa.example.tasktimer.TasksContract
+import timifeoluwa.example.tasktimer.Timing
+import timifeoluwa.example.tasktimer.database.CurrentTimingContract
+import timifeoluwa.example.tasktimer.database.TimingsContract
 
 private const val TAG = "TaskTimerViewModel"
 
